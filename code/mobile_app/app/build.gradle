@@ -1,0 +1,65 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.google.gms.google.services)
+}
+
+android {
+    namespace 'com.example.smartirri'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.example.smartirri"
+        minSdk 26
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation libs.appcompat
+    implementation libs.material
+    // Downgraded to 1.10.1 to be compatible with compileSdk 35
+    implementation "androidx.activity:activity:1.10.1"
+    implementation libs.constraintlayout
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-auth:23.0.0'
+    implementation libs.firebase.auth
+
+    // UI Libraries for the Dashboard
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+
+    // Networking for Weather API (Retrofit and Gson) <-- NEW
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.11.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.11.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+        // JSON (if you need org.json)
+    implementation 'org.json:json:20240303'
+    implementation libs.play.services.location
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+
+
+
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}
